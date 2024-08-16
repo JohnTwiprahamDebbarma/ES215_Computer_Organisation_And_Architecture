@@ -1,4 +1,4 @@
-echo 64_int
+echo "64_int"
 time python 64_int.py
 
 echo 128_int

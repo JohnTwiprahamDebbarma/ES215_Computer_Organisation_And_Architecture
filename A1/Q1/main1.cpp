@@ -24,11 +24,11 @@ int main() {
 
 
     cout << " ********************************** " << endl;
-    cout << "Time taken using recursion: " << time_1a << endl;
+    cout << "Time taken using recursion: " << time_1a << "seconds" << endl;
     // Calculate speedups
-    cout << "Speedup of loop w.r.t. recursion: " << speedup(time_1a, time_1b) << endl;
-    cout << "Speedup of recursion with memoization w.r.t. recursion: " << speedup(time_1a, time_1c) << endl;
-    cout << "Speedup of loop with memoization w.r.t. recursion: " << speedup(time_1a, time_1d) << endl;
+    cout << "Speedup of loop by keeping recursion as the baseline: " << speedup(time_1a, time_1b) << endl;
+    cout << "Speedup of recursion with memoization by keeping recursion as the baseline: " << speedup(time_1a, time_1c) << endl;
+    cout << "Speedup of loop with memoization by keeping recursion as the baseline: " << speedup(time_1a, time_1d) << endl;
     cout << " ********************************** " << endl;
 
     return 0;

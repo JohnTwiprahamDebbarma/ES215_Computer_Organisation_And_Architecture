@@ -42,7 +42,7 @@ def multiply_and_save_matrices(matrix1, matrix2, N, output_filename, dtype=float
     return meat_time
 
 def main():
-    sizes = [64, 128]
+    sizes = [64, 128, 256, 512, 1024]
 
     with open('execution_times.txt', 'w') as f:
         f.write("Size,Iteration,Type,Meat Time (s),Total Time (s),Meat Proportion (%)\n")

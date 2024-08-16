@@ -5,6 +5,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <chrono>
+#include <algorithm>
+
 using namespace std;
 using namespace std::chrono;
 
@@ -103,6 +105,17 @@ double multiply_and_save_matrices(const vector<vector<T>>& matrix1,
     return duration;
 }
 
+double calculate_median(vector<double>& times) {
+    size_t size = times.size();
+    sort(times.begin(), times.end());
+
+    if (size % 2 == 0) {
+        return (times[size / 2 - 1] + times[size / 2]) / 2.0;
+    } else {
+        return times[size / 2];
+    }
+}
+
 void execute_and_measure(int N, const string& type) {
     string filename1 = "matrix_" + type + "_" + to_string(N) + "_1.txt";
     string filename2 = "matrix_" + type + "_" + to_string(N) + "_2.txt";
@@ -122,6 +135,8 @@ void execute_and_measure(int N, const string& type) {
     auto matrix1 = read_matrix<double>(filename1, N);
     auto matrix2 = read_matrix<double>(filename2, N);
 
+    vector<double> meat_times, total_times;
+
     ofstream times_file("execution_times.txt", ios::app);
     if (!times_file) {
         cerr << "Unable to open file for writing times." << endl;
@@ -138,6 +153,9 @@ void execute_and_measure(int N, const string& type) {
 
         double proportion_meat = static_cast<double>(meat_time) / total_time;
 
+        meat_times.push_back(meat_time);
+        total_times.push_back(total_time);
+
         cout << "Time for " << type << " matrix multiplication for N=" << N << " and iteration=" << i << ":" << endl;
         cout << "  Meat portion time: " << meat_time << " nanoseconds" << endl;
         cout << "  Total time: " << total_time << " nanoseconds" << endl;
@@ -146,10 +164,16 @@ void execute_and_measure(int N, const string& type) {
         times_file << N << "," << i << "," << type << "," << meat_time << "," << total_time << "," << proportion_meat * 100 << endl;
     }
     times_file.close();
+
+    double median_meat_time = calculate_median(meat_times);
+    double median_total_time = calculate_median(total_times);
+
+    cout << "Median Meat Time for " << type << " matrix multiplication for N=" << N << ": " << median_meat_time << " nanoseconds" << endl;
+    cout << "Median Total Time for " << type << " matrix multiplication for N=" << N << ": " << median_total_time << " nanoseconds" << endl;
 }
 
 int main() {
-    vector<int> sizes = {64, 128};
+    vector<int> sizes = {64, 128, 256, 512, 1024};
 
     for (const auto& size : sizes) {
         execute_and_measure(size, "int");

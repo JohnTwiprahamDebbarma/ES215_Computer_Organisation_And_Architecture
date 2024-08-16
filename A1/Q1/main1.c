@@ -24,11 +24,11 @@ int main() {
     printf("\n");
     printf(" ********************************** \n");
     printf("Time taken using recursion: %f seconds\n", time_1a);
-    printf("Time taken using recursion for c: %f seconds\n", time_1c);
+    // printf("Time taken using recursion for c: %f seconds\n", time_1c);
     // Calculate speedups
-    printf("Speedup of loop w.r.t. recursion: %f\n", speedup(time_1a, time_1b));
-    printf("Speedup of recursion with memoization w.r.t. recursion: %f\n", speedup(time_1a, time_1c));
-    printf("Speedup of loop with memoization w.r.t. recursion: %f\n", speedup(time_1a, time_1d));
+    printf("Speedup of loop by keeping recursion as the baseline: %f\n", speedup(time_1a, time_1b));
+    printf("Speedup of recursion with memoization by keeping recursion as the baseline: %f\n", speedup(time_1a*1e9, time_1c));
+    printf("Speedup of loop with memoization by keeping recursion as the baseline: %f\n", speedup(time_1a, time_1d));
     printf(" ********************************** \n");
 
     return 0;
