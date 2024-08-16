@@ -3,6 +3,7 @@
 
 long long fib_memo(int n, long long memo[]) {
     if (n <= 1) return n;
+    //check if answer already exists:
     if (memo[n] != -1) return memo[n];
     memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo);
     return memo[n];

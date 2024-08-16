@@ -15,16 +15,21 @@ double speedup(double baseline, double other) {
 }
 
 int main() {
-    // Calculate time taken by each method
+    // Calculating time taken by each method:
     double time_1a = calculate_time_1a();
     double time_1b = calculate_time_1b();
     double time_1c = calculate_time_1c();
     double time_1d = calculate_time_1d();
 
+    printf("\n");
+    printf(" ********************************** \n");
+    printf("Time taken using recursion: %f seconds\n", time_1a);
+    printf("Time taken using recursion for c: %f seconds\n", time_1c);
     // Calculate speedups
-    printf("Speedup of loop over recursion: %f\n", speedup(time_1a, time_1b));
-    printf("Speedup of recursion with memoization over recursion: %f\n", speedup(time_1a, time_1c));
-    printf("Speedup of loop with memoization over recursion: %f\n", speedup(time_1a, time_1d));
+    printf("Speedup of loop w.r.t. recursion: %f\n", speedup(time_1a, time_1b));
+    printf("Speedup of recursion with memoization w.r.t. recursion: %f\n", speedup(time_1a, time_1c));
+    printf("Speedup of loop with memoization w.r.t. recursion: %f\n", speedup(time_1a, time_1d));
+    printf(" ********************************** \n");
 
     return 0;
 }

@@ -16,16 +16,20 @@ double speedup(double baseline, double other) {
 }
 
 int main() {
-    // Calculate time taken by each method
+    // Calculating time taken by each method:
     double time_1a = calculate_time_1a();
     double time_1b = calculate_time_1b();
     double time_1c = calculate_time_1c();
     double time_1d = calculate_time_1d();
 
+
+    cout << " ********************************** " << endl;
+    cout << "Time taken using recursion: " << time_1a << endl;
     // Calculate speedups
-    cout << "Speedup of loop over recursion: " << speedup(time_1a, time_1b) << endl;
-    cout << "Speedup of recursion with memoization over recursion: " << speedup(time_1a, time_1c) << endl;
-    cout << "Speedup of loop with memoization over recursion: " << speedup(time_1a, time_1d) << endl;
+    cout << "Speedup of loop w.r.t. recursion: " << speedup(time_1a, time_1b) << endl;
+    cout << "Speedup of recursion with memoization w.r.t. recursion: " << speedup(time_1a, time_1c) << endl;
+    cout << "Speedup of loop with memoization w.r.t. recursion: " << speedup(time_1a, time_1d) << endl;
+    cout << " ********************************** " << endl;
 
     return 0;
 }
